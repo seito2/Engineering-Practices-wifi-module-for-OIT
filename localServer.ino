@@ -36,10 +36,6 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   SPIFFS.begin();
-  File htmlFile = SPIFFS.open(path_root, "r");
-  size_t size = htmlFile.size();
-  htmlFile.read(buf, size);
-  htmlFile.close();
 
   WiFi.softAP(ssid, password);
   IPAddress myIP = WiFi.softAPIP();
@@ -47,7 +43,7 @@ void setup() {
 
   Serial.println(ssid + String(" starts.."));
   Serial.print("this AP : ");
-  Serial.println(ip);
+  Serial.println(myIP);
   server.on("/", handleCommand);
 
   server.begin();
