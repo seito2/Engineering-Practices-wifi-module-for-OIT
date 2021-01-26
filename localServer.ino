@@ -11,7 +11,7 @@ ESP8266WebServer server(80);
 
 static const char *cpResponse400 = "<HTML><BODY>Bad request</BODY></HTML>\r\n";
 static const char *cpResponse200 = "<HTML><BODY style='font-size:48px;'>ESP_HTTPD_LED1<br/><br/>"
-                                   "<br/><a href=/cmd?LED=on>on</a><br/><a href=/cmd?LED=off>off</a><br/>"
+                                   "<br/><a href=/?LED=on>on</a><br/><a href=/?LED=off>off</a><br/>"
                                    "</BODY></HTML>\r\n";
 
 enum led_style {
@@ -35,7 +35,7 @@ void setup() {
   delay(1000);
   pinMode(LED_PIN, OUTPUT);
 
-  SPIFFS.begin();
+  Serial.begin(115200);
 
   WiFi.softAP(ssid, password);
   IPAddress myIP = WiFi.softAPIP();
