@@ -18,6 +18,7 @@ enum led_style {
   led_off = 0,
   led_on = 1,
 };
+
 static enum led_style led = led_off;
 
 void handleCommand() {
@@ -37,13 +38,13 @@ void setup() {
 
   Serial.begin(115200);
 
-  WiFi.softAP(ssid, password);
-  IPAddress myIP = WiFi.softAPIP();
-  delay(500);
-
-  Serial.println(ssid + String(" starts.."));
-  Serial.print("this AP : ");
-  Serial.println(myIP);
+  WiFi.begin(SSID, PASS);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("WiFi connected");
+  Serial.println(WiFi.localIP());
   server.on("/", handleCommand);
 
   server.begin();
