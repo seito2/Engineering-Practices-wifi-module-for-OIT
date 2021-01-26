@@ -33,7 +33,7 @@ void handleCommand() {
 
 void setup() {
   delay(1000);
-  pinMode(FLPin, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
 
   SPIFFS.begin();
   File htmlFile = SPIFFS.open(path_root, "r");
